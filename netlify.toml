@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"  # 打包命令
-  publish = "build"  # 打包输出目录（对应Vite配置的outDir）
+  publish = "dist"  # 打包输出目录（对应Vite配置的outDir）
 
 [dev]
   command = "npm run dev"
