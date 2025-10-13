@@ -20,6 +20,7 @@ export default defineConfig(() => {
       },
     },
     build: {
+      outDir: 'dist', // 确保此处是 `dist`（Vite 默认值，若未修改可忽略）
       rollupOptions: {
         output: {
           manualChunks(id) {
