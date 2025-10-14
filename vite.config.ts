@@ -36,5 +36,16 @@ export default defineConfig(() => {
         include: 'src/**/*.{js,jsx,ts,tsx}',
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          modifyVars: {
+            // 可以在这里覆盖 Ant Design 的默认变量
+            // '@primary-color': '#1DA57A',
+          },
+        },
+      },
+    },
   };
 });

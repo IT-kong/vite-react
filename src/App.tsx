@@ -1,19 +1,8 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import {Counter} from './pages/Counter'
 
+import Routes from '@/router';
+import './index.css';
 function App() {
-
-  return (
-    <>
-      <Counter />
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  return <Routes />;
 }
 
-export default App
+export default App;
