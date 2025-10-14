@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button, ConfigProvider, Input, Layout, Spin, Typography } from 'antd';
 import ReactMarkdown from 'react-markdown';
+import type { Components } from 'react-markdown';
+
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -26,6 +28,11 @@ interface KnowledgeBaseProps {
   defaultDocId?: string;
 }
 
+interface CodeProps {
+  inline?: boolean;
+  className?: string;
+  children?: React.ReactNode; // 修改为可选
+}
 const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
   docTree = [
     { id: 'intro', title: '项目介绍', order: 1 },
@@ -143,17 +150,12 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
       </div>
     );
   };
-  const renderCodeBlock = ({
+  const renderCodeBlock: Components['code'] = ({
     inline,
     className,
     children,
     ...props
-  }: {
-    inline?: boolean;
-    className?: string;
-    children: React.ReactNode;
-    node?: Element;
-  }) => {
+  }: CodeProps) => {
     const match = /language-(\w+)/.exec(className || '');
     return !inline && match ? (
       <SyntaxHighlighter style={dracula} language={match[1]} PreTag='div' {...props}>
