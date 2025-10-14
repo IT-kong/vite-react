@@ -1,3 +1,4 @@
+// 在文件顶部导入 ReactMarkdown 的类型
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button, ConfigProvider, Input, Layout, Spin, Typography } from 'antd';
 import ReactMarkdown from 'react-markdown';
@@ -6,6 +7,7 @@ import type { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import './index.less';
 
 const { Sider, Content } = Layout;
 const { Title } = Typography;
@@ -33,6 +35,27 @@ interface CodeProps {
   className?: string;
   children?: React.ReactNode; // 修改为可选
 }
+
+const CustomTable: React.FC<React.HTMLAttributes<HTMLTableElement>> = (props) => {
+  return (
+    <div style={{ overflowX: 'auto', margin: '16px 0' }}>
+      <table
+        {...props}
+        style={{
+          width: '100%',
+          borderCollapse: 'collapse',
+          fontSize: '14px',
+          lineHeight: '1.5',
+          backgroundColor: '#fff',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+          borderRadius: '8px',
+          overflow: 'hidden',
+        }}>
+        {props.children}
+      </table>
+    </div>
+  );
+};
 const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
   docTree = [
     { id: 'intro', title: '项目介绍', order: 1 },
@@ -221,7 +244,9 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
             }}>
             {loading ? (
               <div style={{ textAlign: 'center', padding: '50px 0' }}>
-                <Spin size='large' tip='加载中...' />
+                <Spin size='large'>
+                  <div style={{ padding: '20px 0', color: 'rgba(0, 0, 0, 0.45)' }}>加载中...</div>
+                </Spin>
               </div>
             ) : (
               <div
@@ -244,6 +269,8 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
                         {...(props as React.ComponentProps<typeof Typography.Link>)}
                       />
                     ),
+                    // 添加表格支持
+                    table: CustomTable,
                   }}>
                   {docContent}
                 </ReactMarkdown>
