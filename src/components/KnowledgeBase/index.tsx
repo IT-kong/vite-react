@@ -57,14 +57,7 @@ const CustomTable: React.FC<React.HTMLAttributes<HTMLTableElement>> = (props) =>
   );
 };
 const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
-  docTree = [
-    { id: 'intro', title: '项目介绍', order: 1 },
-    { id: 'cicd-flow', title: 'CI/CD 流程', order: 2 },
-    { id: 'wsl-setup', title: 'WSL 环境配置', order: 3 },
-    { id: 'nginx-deploy', title: 'Nginx 部署指南', order: 4 },
-    { id: 'docker-basic', title: 'Docker 基础操作', parentId: 'cicd-flow', order: 2.1 },
-    { id: 'gitlab-ci', title: 'GitLab CI 配置', parentId: 'cicd-flow', order: 2.2 },
-  ],
+  docTree = [],
   docBasePath = '/docs/',
   defaultDocId = 'intro',
 }) => {

@@ -9,6 +9,7 @@ const customDocTree = [
   { id: 'nginx-deploy', title: 'Nginx 部署指南', order: 4 },
   { id: 'docker-basic', title: 'Docker 基础操作', parentId: 'cicd-flow', order: 2.1 },
   { id: 'gitlab-ci', title: 'GitLab CI 配置', parentId: 'cicd-flow', order: 2.2 },
+  { id: 'AI-prompt', title: 'AI提示语模板', order: 5 },
 ];
 
 const KnowledgeBasePage: React.FC = () => {
